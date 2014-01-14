@@ -143,7 +143,10 @@ namespace TracerHub.Diagnostics
         /// </summary>
         public void SetTracingLevel(string sourceName, SourceLevels level)
         {
-            this.GetOrAdd(sourceName, name => CreateSource(name)).Switch.Level = level;
+            foreach (var compositeSource in CompositeFor(sourceName))
+            {
+                this.GetOrAdd(compositeSource, name => CreateSource(name)).Switch.Level = level;
+            }
         }
 
         /// <summary>

@@ -1,5 +1,5 @@
 ﻿/*
-   Copyright 2014 Clarius Consulting
+   Copyright 2014 Clarius Consulting SA
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
