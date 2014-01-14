@@ -12,11 +12,13 @@
 
 namespace TracerHub
 {
-    using Owin;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web;
+	using Owin;
+	using System;
+	using System.Collections.Generic;
+	using System.Diagnostics;
+	using System.Linq;
+	using System.Web;
+	using TracerHub.Diagnostics;
 
     public class Startup
     {
@@ -24,6 +26,13 @@ namespace TracerHub
         {
             // Any connection or hub wire up and configuration should go here
             app.MapSignalR();
+
+			var manager = new TracerManager();
+			
+			manager.AddListener("*", new RealtimeTraceListener("tracerhub"));
+			manager.SetTracingLevel("*", SourceLevels.Information);
+
+			Tracer.Initialize(manager);
         }
     }
 }

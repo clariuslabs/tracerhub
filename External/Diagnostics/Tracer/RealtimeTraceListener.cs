@@ -48,10 +48,12 @@ namespace TracerHub.Diagnostics
         /// <summary>
         /// The SignalR hosted hub. Change to your own host URL if self-hosting.
         /// </summary>
-        const string TracerHubUrl = "http://tracer.azurewebsites.net/";
+        const string HostedHubUrl = "http://tracer.azurewebsites.net/";
+
+		static readonly string DefaultHubUrl;
         const string HubName = "Tracer";
 
-        static readonly string hubUrl;
+        string hubUrl;
         string groupName;
 
         /// <summary>
@@ -60,9 +62,9 @@ namespace TracerHub.Diagnostics
         /// </summary>
         static RealtimeTraceListener()
         {
-            hubUrl = ConfigurationManager.AppSettings["HubUrl"];
-            if (string.IsNullOrEmpty(hubUrl))
-                hubUrl = TracerHubUrl;
+			DefaultHubUrl = ConfigurationManager.AppSettings["HubUrl"];
+			if (string.IsNullOrEmpty(DefaultHubUrl))
+				DefaultHubUrl = HostedHubUrl;
         }
 
         /// <summary>
@@ -75,6 +77,7 @@ namespace TracerHub.Diagnostics
                 throw new ArgumentException("String value for groupName cannot be empty or null.", "groupName");
 
             this.groupName = groupName;
+			this.hubUrl = DefaultHubUrl;
         }
 
         ~RealtimeTraceListener()

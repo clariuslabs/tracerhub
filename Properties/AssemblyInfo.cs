@@ -12,7 +12,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("TracerHub")]
+[assembly: AssemblyTitle("Tracer.Hub")]
 [assembly: AssemblyDescription("SignalR hub for real time remote diagnostics")]
 [assembly: AssemblyCompany("Clarius Consulting")]
 [assembly: AssemblyProduct("TracerHub")]
