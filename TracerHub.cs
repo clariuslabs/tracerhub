@@ -14,6 +14,7 @@ namespace TracerHub
     using Microsoft.AspNet.SignalR.Hubs;
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Linq;
     using System.Threading.Tasks;
     using System.Web;
@@ -21,9 +22,14 @@ namespace TracerHub
     [HubName("Tracer")]
     public class TracerHub : Hub
     {
-        public void BroadcastTraceEvent(TraceEvent trace)
+        public void TraceEvent(TraceEvent trace)
         {
             Clients.OthersInGroup(Context.QueryString["groupName"]).TraceEvent(trace);
+        }
+
+        public void SetTracingLevel(string source, SourceLevels level)
+        {
+            Clients.OthersInGroup(Context.QueryString["groupName"]).SetTracingLevel(source, level);
         }
 
         public override Task OnConnected()
