@@ -106,7 +106,7 @@ namespace TracerHub.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {level}:{source}:{message}.
+        ///   Looks up a localized string similar to TraceEvent(&quot;{source}&quot;, {level}, &quot;[...]&quot;).
         /// </summary>
         internal static string Trace_TraceEvent {
             get {

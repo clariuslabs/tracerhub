@@ -130,7 +130,7 @@
     <value>SetTraceLevel("{source}", {level})</value>
   </data>
   <data name="Trace_TraceEvent" xml:space="preserve">
-    <value>{level}:{source}:{message}</value>
+    <value>TraceEvent("{source}", {level}, "[...]")</value>
   </data>
   <data name="Trace_Disconnected" xml:space="preserve">
     <value>'{clientIP}' disconnected from '{group}'</value>

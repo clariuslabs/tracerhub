@@ -105,15 +105,14 @@ namespace TracerHub.Properties
 		
 			/// <summary>
 			/// Looks up a localized string similar to: 
-			///	{level}:{source}:{message}
+			///	TraceEvent("{source}", {level}, "[...]")
 			/// </summary>
-			public static string TraceEvent(object level, object source, object message)
+			public static string TraceEvent(object source, object level)
 			{
 				return Resources.Trace_TraceEvent.FormatWith(new 
 				{
-					level = level,
 					source = source,
-					message = message,
+					level = level,
 				});
 			}
 		}

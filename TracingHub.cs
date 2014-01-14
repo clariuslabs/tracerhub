@@ -24,7 +24,7 @@ namespace TracerHub
     [HubName("Tracer")]
     public class TracingHub : Hub
     {
-        private static ITracer tracer = Tracer.Get<TracingHub>();
+        private static ITracer tracer = Tracer.Get(typeof(TracingHub).Namespace);
 
 		/// <summary>
 		/// The group that the hub uses to trace its own internal messages.
@@ -36,7 +36,8 @@ namespace TracerHub
             Clients.OthersInGroup(Context.QueryString["groupName"]).TraceEvent(trace);
 
 			if (ShouldTrace(Context))
-				tracer.Verbose(Strings.Trace.TraceEvent(trace.EventType, trace.Source, trace.Message));
+				// For security reasons, we never broadcast via the hub the actual message payloads.
+				tracer.Verbose(Strings.Trace.TraceEvent(trace.Source, trace.EventType));
         }
 
         public void SetTracingLevel(string source, SourceLevels level)
