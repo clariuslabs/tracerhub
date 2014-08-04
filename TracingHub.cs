@@ -64,12 +64,12 @@ namespace TracerHub
             return base.OnConnected();
         }
 
-		public override Task OnDisconnected()
+		public override Task OnDisconnected(bool stopCalled)
 		{
 			if (ShouldTrace(Context))
 				tracer.Info(Strings.Trace.Disconnected(Context.Request.GetHttpContext().Request.UserHostAddress, Context.QueryString["groupName"]));
 			
-			return base.OnDisconnected();
+			return base.OnDisconnected(stopCalled);
 		}
 
 		public override Task OnReconnected()
